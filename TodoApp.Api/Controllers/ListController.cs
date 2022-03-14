@@ -26,16 +26,19 @@ namespace TodoApp.Api.Controllers
             {
                 if (String.IsNullOrEmpty(Request.Headers["X-User-Id"]))
                 {
-                    return BadRequest("X-User-Id headers must be provided");
+                    return Unauthorized("X-User-Id headers must be provided");
                 }
 
                 int userId = int.Parse(Request.Headers["X-User-Id"]);
-                if (!(await _userService.IsUserExists(userId))) return Unauthorized("Invalid user id");
+                if (!(await _userService.IsUserExists(userId)))
+                {
+                    return Unauthorized("Invalid user id");
+                }
 
                 return Ok(_todoService
                     .GetAllUserTodoList(userId)
                     .Select(tl => new TodoListDto(tl))
-                    .ToList());
+                    .AsEnumerable());
             }
             catch (Exception e)
             {
@@ -51,11 +54,14 @@ namespace TodoApp.Api.Controllers
             {
                 if (String.IsNullOrEmpty(Request.Headers["X-User-Id"]))
                 {
-                    return BadRequest("X-User-Id headers must be provided");
+                    return Unauthorized("X-User-Id headers must be provided");
                 }
 
                 int userId = int.Parse(Request.Headers["X-User-Id"]);
-                if (!(await _userService.IsUserExists(userId))) return Unauthorized("Invalid user id");
+                if (!(await _userService.IsUserExists(userId)))
+                {
+                    return Unauthorized("Invalid user id");
+                }
 
                 TodoList? todoList = _todoService.GetUserTodoListById(userId, id);
                 if (todoList == null) return NotFound("List not found");
@@ -75,11 +81,14 @@ namespace TodoApp.Api.Controllers
             {
                 if (String.IsNullOrEmpty(Request.Headers["X-User-Id"]))
                 {
-                    return BadRequest("X-User-Id headers must be provided");
+                    return Unauthorized("X-User-Id headers must be provided");
                 }
 
                 int userId = int.Parse(Request.Headers["X-User-Id"]);
-                if (!(await _userService.IsUserExists(userId))) return Unauthorized("Invalid user id");
+                if (!(await _userService.IsUserExists(userId)))
+                {
+                    return Unauthorized("Invalid user id");
+                }
 
                 TodoList newTodoList = await _todoService.CreateTodoList(userId, request.Name);
                 return Ok(new TodoListDto(newTodoList));

@@ -26,7 +26,7 @@ namespace TodoApp.Api.Controllers
             {
                 if (String.IsNullOrEmpty(Request.Headers["X-User-Id"]))
                 {
-                    return BadRequest("X-User-Id headers must be provided");
+                    return Unauthorized("X-User-Id headers must be provided");
                 }
 
                 int userId = int.Parse(Request.Headers["X-User-Id"]);
@@ -38,7 +38,7 @@ namespace TodoApp.Api.Controllers
                 return Ok(_todoService
                     .GetAllUserTodoItems(userId)
                     .Select(ti => new TodoItemDto(ti))
-                    .ToList());
+                    .AsEnumerable());
             }
             catch (Exception e)
             {
@@ -54,7 +54,7 @@ namespace TodoApp.Api.Controllers
             {
                 if (String.IsNullOrEmpty(Request.Headers["X-User-Id"]))
                 {
-                    return BadRequest("X-User-Id headers must be provided");
+                    return Unauthorized("X-User-Id headers must be provided");
                 }
 
                 int userId = int.Parse(Request.Headers["X-User-Id"]);
@@ -64,7 +64,11 @@ namespace TodoApp.Api.Controllers
                 }
 
                 TodoItem? todoItem = _todoService.GetUserTodoItemById(userId, id);
-                if (todoItem == null) return NotFound("Item not found");
+                if (todoItem == null)
+                {
+                    return NotFound("Item not found");
+                }
+
                 return Ok(new TodoItemDto(todoItem));
             }
             catch (Exception e)
@@ -81,7 +85,7 @@ namespace TodoApp.Api.Controllers
             {
                 if (String.IsNullOrEmpty(Request.Headers["X-User-Id"]))
                 {
-                    return BadRequest("X-User-Id headers must be provided");
+                    return Unauthorized("X-User-Id headers must be provided");
                 }
 
                 int userId = int.Parse(Request.Headers["X-User-Id"]);
@@ -125,7 +129,7 @@ namespace TodoApp.Api.Controllers
             {
                 if (String.IsNullOrEmpty(Request.Headers["X-User-Id"]))
                 {
-                    return BadRequest("X-User-Id headers must be provided");
+                    return Unauthorized("X-User-Id headers must be provided");
                 }
 
                 int userId = int.Parse(Request.Headers["X-User-Id"]);
@@ -168,13 +172,13 @@ namespace TodoApp.Api.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<TodoItemDto>> Delete(int id)
+        public async Task<ActionResult<IEnumerable<TodoItemDto>>> Delete(int id)
         {
             try
             {
                 if (String.IsNullOrEmpty(Request.Headers["X-User-Id"]))
                 {
-                    return BadRequest("X-User-Id headers must be provided");
+                    return Unauthorized("X-User-Id headers must be provided");
                 }
 
                 int userId = int.Parse(Request.Headers["X-User-Id"]);
@@ -193,7 +197,7 @@ namespace TodoApp.Api.Controllers
                 return Ok(_todoService
                     .GetAllUserTodoItems(userId)
                     .Select(ti => new TodoItemDto(ti))
-                    .ToList());
+                    .AsEnumerable());
             }
             catch (Exception e)
             {

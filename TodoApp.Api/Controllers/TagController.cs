@@ -22,10 +22,10 @@ namespace TodoApp.Api.Controllers
         {
             try
             {
-                IEnumerable<TodoTag> todoTags = _todoService.GetAllTodoTags();
-                var response = todoTags.Select(t => new TodoTagDto(t)).ToList();
-
-                return Ok(response);
+                return Ok(_todoService
+                    .GetAllTodoTags()
+                    .Select(t => new TodoTagDto(t))
+                    .AsEnumerable());
             }
             catch (Exception e)
             {
@@ -41,7 +41,10 @@ namespace TodoApp.Api.Controllers
             {
                 TodoTag? todoTag = await _todoService.GetTodoTagById(id);
 
-                if (todoTag == null) return NotFound("Tag not found");
+                if (todoTag == null)
+                {
+                    return NotFound("Tag not found");
+                }
 
                 return Ok(new TodoTagDto(todoTag));
             }

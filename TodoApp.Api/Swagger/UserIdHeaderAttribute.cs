@@ -13,7 +13,7 @@ public class UserIdHeaderAttribute : IOperationFilter
         {
             Name = "X-User-Id",
             In = ParameterLocation.Header,
-            Required = true,
+            Required = false,
             Schema = new OpenApiSchema
             {
                 Type = "string"
