@@ -25,7 +25,7 @@ cd todo-dotnet-core-6
 
 2. Run `dotnet restore` to restore all project dependencies.
 
-3. Start `MS SQL Server` by running `docker-compose up -d`. This will run a mssqlserver container which you could check by running `docker ps`. By default, mssqlserver will run on port `1433`. If you want to change this port, you could change the host port in the [docker-compose](https://github.com/abiwinanda/todo-dotnet-core-6/blob/master/docker-compose.yaml#L9). If you prefer to use your locally installed mssqlserver, you could skip this step.
+3. Start `MS SQL Server` by running `docker-compose up -d`. This will run a mssqlserver container which you could check by running `docker ps`. By default, mssqlserver will run on port `1433` and you could connect to it with `sa` as the username and `Password@123` as the password. If you want to change the port, you could change the host port in the [docker-compose](https://github.com/abiwinanda/todo-dotnet-core-6/blob/master/docker-compose.yaml#L9). If you prefer to use your locally installed mssqlserver, you could skip this step.
 
 4. Once you have `MS SQL Server` running in you local, you could start the db migration by running
 
