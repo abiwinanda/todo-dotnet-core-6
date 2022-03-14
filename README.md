@@ -10,7 +10,17 @@ For local development purposes, you might want to run the server or unit test lo
 
 Assuming you already have dotnet code 6 and docker installed, you could skip prerequisites steps. Otherwise, you could follow the following steps:
 
-1. First you would need to have dotnet core version 6 installed on your local machine. You could download dotnet core 6 from the [Official Download Page](https://dotnet.microsoft.com/en-us/download).
+1. First you would need to have dotnet core version 6 installed on your local machine. You could download dotnet core 6 from the [Official Download Page](https://dotnet.microsoft.com/en-us/download). If you have installed dotnet core version 6, you could double check it using the cli
+
+```sh
+dotnet --info
+
+.NET SDK (reflecting any global.json):
+ Version:   6.x.xxx
+ Commit:    ...
+
+...
+```
 
 2. Next, you would also need docker to set up dependency services such as `MS SQL Server`. To install docker, it is recommended that you follow the official [Get Docker](https://docs.docker.com/get-docker/) guideline.
 
