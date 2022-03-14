@@ -22,6 +22,48 @@ namespace TodoApp.Core.Services
             _todoItemRepository = todoItemRepository;
         }
 
+        public IEnumerable<TodoTag> GetAllTodoTags()
+        {
+            return _todoTagRepository.GetAll().AsEnumerable();
+        }
+
+        public async Task<TodoTag?> GetTodoTagById(int id)
+        {
+            TodoTag? todoTag = await _todoTagRepository.GetById(id);
+            return todoTag;
+        }
+
+        public List<TodoTag> GetListOfTodoTagByListOfId(List<int> todoTagIds)
+        {
+            return _todoTagRepository.GetAll()
+                .Where(tt => todoTagIds.Contains(tt.Id))
+                .ToList();
+        }
+
+        public async Task<bool> IsTodoTagExists(int id)
+        {
+            return (await _todoTagRepository.GetById(id)) != null;
+        }
+
+
+        public IEnumerable<TodoList> GetAllUserTodoList(int userId)
+        {
+            return _todoListRepository.GetAll()
+                .Where(tl => tl.UserId == userId)
+                .Include(tl => tl.TodoItems)
+                    .ThenInclude(ti => ti.TodoTags)
+                .AsEnumerable();
+        }
+
+        public TodoList? GetUserTodoListById(int userId, int id)
+        {
+            return _todoListRepository.GetAll()
+                .Where(tl => tl.UserId == userId && tl.Id == id)
+                .Include(tl => tl.TodoItems)
+                    .ThenInclude(ti => ti.TodoTags)
+                .SingleOrDefault();
+        }
+
         public async Task<TodoList> CreateTodoList(int userId, string name)
         {
             TodoList newTodoList = new TodoList()
@@ -36,43 +78,11 @@ namespace TodoApp.Core.Services
             return newTodoList;
         }
 
-        public IEnumerable<TodoList> GetAllUserTodoList(int userId)
-        {
-            return _todoListRepository.GetAll()
-                .Where(tl => tl.UserId == userId)
-                .Include(tl => tl.TodoItems)
-                    .ThenInclude(ti => ti.TodoTags)
-                .AsEnumerable();
-        }
-
-        public IEnumerable<TodoTag> GetAllTodoTags()
-        {
-            return _todoTagRepository.GetAll().AsEnumerable();
-        }
-
-        public TodoList? GetUserTodoListById(int userId, int id)
+        public bool IsUserTodoListExists(int userId, int id)
         {
             return _todoListRepository.GetAll()
                 .Where(tl => tl.UserId == userId && tl.Id == id)
-                .Include(tl => tl.TodoItems)
-                    .ThenInclude(ti => ti.TodoTags)
-                .SingleOrDefault();
-        }
-
-        public bool IsUserTodoListExists(int userId, int id)
-        {
-            return _todoListRepository.GetAll().Where(tl => tl.UserId == userId && tl.Id == id).SingleOrDefault() != null;
-        }
-
-        public async Task<TodoTag?> GetTodoTagById(int id)
-        {
-            TodoTag? todoTag = await _todoTagRepository.GetById(id);
-            return todoTag;
-        }
-
-        public async Task<bool> IsTodoTagExists(int id)
-        {
-            return (await _todoTagRepository.GetById(id)) != null;
+                .SingleOrDefault() != null;
         }
 
         public IEnumerable<TodoItem> GetAllUserTodoItems(int userId)
@@ -118,13 +128,6 @@ namespace TodoApp.Core.Services
 
             _todoItemRepository.Delete(todoItem);
             await _todoListRepository.Save();
-        }
-
-        public List<TodoTag> GetListOfTodoTagByListOfId(List<int> todoTagIds)
-        {
-            return _todoTagRepository.GetAll()
-                .Where(tt => todoTagIds.Contains(tt.Id))
-                .ToList();
         }
 
         public async Task<bool> IsTodoItemExists(int id)
