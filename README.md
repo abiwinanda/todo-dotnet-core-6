@@ -1,6 +1,6 @@
 # TodoApp
 
-Todo app created using dotnet core 6.
+Todo app created using dotnet core 6 that demonstrate IoC, unit testing, data layer, and generic repository pattern.
 
 ## Project Set Up
 
@@ -46,3 +46,11 @@ Once you have the application running you could use postman to play around with 
 ### Issues
 
 If you found any issues with the project, whether it is a bug or you are unable to run the application locally, do not hesitate to post the issues in the [Issues](https://github.com/abiwinanda/todo-dotnet-core-6/issues) tab.
+
+## Project Structure
+
+The structure of this project is as follows:
+* `TodoApp.Api` => contain the Rest API interface.
+* `TodoApp.Core` => contain all the business process or logic of the app.
+* `TodoApp.Data` => contain all the data definition of the app such as entities, dtos, and dbcontext.
+* `TodoApp.Test` => contain the unit test of the project.
