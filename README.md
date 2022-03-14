@@ -47,10 +47,24 @@ Once you have the application running you could use postman to play around with 
 
 If you found any issues with the project, whether it is a bug or you are unable to run the application locally, do not hesitate to post the issues in the [Issues](https://github.com/abiwinanda/todo-dotnet-core-6/issues) tab.
 
-## Project Structure
+## Contribution
+
+For developers who will work on this project, please try to understand the project structure and able to run the unit test before starting the development.
+
+### Project Structure
 
 The structure of this project is as follows:
 * `TodoApp.Api` => contain the Rest API interface.
 * `TodoApp.Core` => contain all the business process or logic of the app.
 * `TodoApp.Data` => contain all the data definition of the app such as entities, dtos, and dbcontext.
 * `TodoApp.Test` => contain the unit test of the project.
+
+### Run Unit Test
+
+To run unit test simply run the following command
+
+```sh
+dotnet test
+```
+
+You could run the command in the root sln directory or inside `TodoApp.App` project directory.
