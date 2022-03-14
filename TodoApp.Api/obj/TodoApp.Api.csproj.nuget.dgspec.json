@@ -25,7 +25,14 @@
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "/Users/abiwinanda/Documents/lup-events/coding-test/TodoApp/TodoApp.Core/TodoApp.Core.csproj": {
+                "projectPath": "/Users/abiwinanda/Documents/lup-events/coding-test/TodoApp/TodoApp.Core/TodoApp.Core.csproj"
+              },
+              "/Users/abiwinanda/Documents/lup-events/coding-test/TodoApp/TodoApp.Data/TodoApp.Data.csproj": {
+                "projectPath": "/Users/abiwinanda/Documents/lup-events/coding-test/TodoApp/TodoApp.Data/TodoApp.Data.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -38,9 +45,27 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[6.0.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[6.0.3, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.2.3, )"
+            },
+            "Swashbuckle.AspNetCore.Filters": {
+              "target": "Package",
+              "version": "[7.0.2, )"
             }
           },
           "imports": [
@@ -57,6 +82,138 @@
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
             },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.200/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/abiwinanda/Documents/lup-events/coding-test/TodoApp/TodoApp.Core/TodoApp.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/abiwinanda/Documents/lup-events/coding-test/TodoApp/TodoApp.Core/TodoApp.Core.csproj",
+        "projectName": "TodoApp.Core",
+        "projectPath": "/Users/abiwinanda/Documents/lup-events/coding-test/TodoApp/TodoApp.Core/TodoApp.Core.csproj",
+        "packagesPath": "/Users/abiwinanda/.nuget/packages/",
+        "outputPath": "/Users/abiwinanda/Documents/lup-events/coding-test/TodoApp/TodoApp.Core/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/abiwinanda/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "/Users/abiwinanda/Documents/lup-events/coding-test/TodoApp/TodoApp.Data/TodoApp.Data.csproj": {
+                "projectPath": "/Users/abiwinanda/Documents/lup-events/coding-test/TodoApp/TodoApp.Data/TodoApp.Data.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[6.0.3, )"
+            },
+            "Microsoft.IdentityModel.Tokens": {
+              "target": "Package",
+              "version": "[6.16.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.200/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/abiwinanda/Documents/lup-events/coding-test/TodoApp/TodoApp.Data/TodoApp.Data.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/abiwinanda/Documents/lup-events/coding-test/TodoApp/TodoApp.Data/TodoApp.Data.csproj",
+        "projectName": "TodoApp.Data",
+        "projectPath": "/Users/abiwinanda/Documents/lup-events/coding-test/TodoApp/TodoApp.Data/TodoApp.Data.csproj",
+        "packagesPath": "/Users/abiwinanda/.nuget/packages/",
+        "outputPath": "/Users/abiwinanda/Documents/lup-events/coding-test/TodoApp/TodoApp.Data/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/abiwinanda/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.Relational": {
+              "target": "Package",
+              "version": "[6.0.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[6.0.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
