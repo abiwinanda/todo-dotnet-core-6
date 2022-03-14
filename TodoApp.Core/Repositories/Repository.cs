@@ -5,16 +5,16 @@ using TodoApp.Data.DbContexts;
 
 namespace TodoApp.Core.Repositories
 {
-	public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
-	{
+    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
+    {
         private readonly TodoDbContext _context;
         private readonly DbSet<TEntity> _dbSet;
 
-		public Repository(TodoDbContext context)
-		{
+        public Repository(TodoDbContext context)
+        {
             _context = context;
             _dbSet = context.Set<TEntity>();
-		}
+        }
 
         public virtual IQueryable<TEntity> GetAll()
         {
@@ -24,9 +24,9 @@ namespace TodoApp.Core.Repositories
         public virtual async Task<TEntity?> GetById(int id)
         {
             return await _dbSet.FindAsync(id);
-        }        
+        }
 
-        public virtual async void Insert(TEntity entity)
+        public virtual async Task Insert(TEntity entity)
         {
             await _dbSet.AddAsync(entity);
         }
@@ -44,6 +44,11 @@ namespace TodoApp.Core.Repositories
                 _dbSet.Attach(entity);
             }
             _dbSet.Remove(entity);
+        }
+
+        public async Task Save()
+        {
+            await _context.SaveChangesAsync();
         }
     }
 }
