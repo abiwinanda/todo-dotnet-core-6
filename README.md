@@ -4,7 +4,7 @@ Todo app created using dotnet core 6 that demonstrate IoC, unit testing, data la
 
 ## Project Set Up
 
-For local development purposes, you might want to run the server or unit test locally. You could follow the following guideline to set up and run the project locally.
+For local development purposes, you might want to run the server or unit test locally. You could follow the following guideline to set up or run the project locally.
 
 ### Prerequisites
 
@@ -49,6 +49,17 @@ dotnet ef database update --project TodoApp.Data --startup-project TodoApp.Api
 dotnet run --project TodoApp.Api
 ```
 
+### Run Unit Test
+
+To run unit test simply run the following command
+
+```sh
+dotnet test
+```
+
+You could run the command in the root sln directory or inside `TodoApp.App` project directory.
+
+
 ## Usage
 
 Once you have the application running you could use postman to play around with the API or you could access `https://https://localhost:7216/swagger/index.html` to play around with the API using swagger (recommended).
@@ -59,7 +70,7 @@ If you found any issues with the project, whether it is a bug or you are unable 
 
 ## Contribution
 
-For developers who will work on this project, please try to understand the project structure and able to run the unit test before starting the development.
+For developers who will work on this project, you could first try to understand the project structure before starting the development.
 
 ### Project Structure
 
@@ -68,13 +79,3 @@ The structure of this project is as follows:
 * `TodoApp.Core` => contain all the business process or logic of the app.
 * `TodoApp.Data` => contain all the data definition of the app such as entities, dtos, and dbcontext.
 * `TodoApp.Test` => contain the unit test of the project.
-
-### Run Unit Test
-
-To run unit test simply run the following command
-
-```sh
-dotnet test
-```
-
-You could run the command in the root sln directory or inside `TodoApp.App` project directory.
